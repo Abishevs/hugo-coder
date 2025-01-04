@@ -5,7 +5,100 @@
     {{ partialCached "home/author.html" . }}
 
     {{ partialCached "home/social.html" . }}
-  </div>
 
-  {{ partialCached "home/extensions.html" . }}
+    <div class="info-sections">
+      <div class="info-section">
+        <i class="fas fa-school"></i>
+        <ul class="interests-list">
+          <li>{{ .Site.Params.school }}</li>
+        </ul>
+      </div>
+      <div class="info-section">
+        <i class="fas fa-microchip"></i>
+        <ul class="interests-list">
+          <li>
+            {{ range $index, $element := .Site.Params.interests }}
+            {{ if $index }}, {{ end }}{{ $element }}
+            {{ end }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <br>
+    <h1>Latest Projects</h1>
+    <br>
+    <div class="projects-grid">
+      {{ range first 4 (where .Site.Pages "Section" "projects") }}
+      {{ if not .IsSection }}
+      <div class="project-card">
+        <a href="{{ .Permalink }}">
+          <img src="{{ .Params.thumbnail }}" alt="{{ .Title }} thumbnail" class="project-thumbnail">
+          <h4>{{ .Title }}</h4>
+        </a>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+
+    <div class="see-all-button">
+      <a href="/projects" class="button">See all projects</a>
+    </div>
+
+
+    {{ partialCached "home/extensions.html" . }}
 </section>
+
+<style>
+  .info-sections {
+    display: flex;
+    gap: 10em;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 20px;
+  }
+
+  .info-section {
+    text-align: center;
+  }
+  .info-section i {
+    font-size: 2em;
+    margin-bottom: 5px;
+  }
+
+    .interests-list {
+    list-style-type: none;
+  }
+  .interests-list li {
+    margin: 5px 0;
+  }
+
+  .projects-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .project-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .project-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  .project-card h4 {
+    margin-top: 10px;
+  }
+
+    .see-all-button {
+      margin-top: 2em;
+  }
+
+</style>
