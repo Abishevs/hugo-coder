@@ -16,9 +16,24 @@
         <span class="keyword">{{ . }}</span>
         {{ end }}
       </div>
+      <div class="mini-date">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+                {{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}
+              </time>
+            </span>
+        </div>
+      </div>
 </div>
 
 <style>
+
+.mini-date {
+  margin: 10px;
+}
+
 .keywords {
   display: flex;
   flex-wrap: wrap;
