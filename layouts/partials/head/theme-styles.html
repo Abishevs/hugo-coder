@@ -3,6 +3,14 @@
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 {{ if hugo.IsServer }}
+  {{ $customStyles := resources.Get "css/custom.css" }}
+  <link rel="stylesheet" href="{{ $customStyles.RelPermalink }}" media="screen">
+{{ else }}
+  {{ $customStyles := resources.Get "css/custom.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $customStyles.RelPermalink }}" integrity="{{ $customStyles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
+{{ end }}
+
+{{ if hugo.IsServer }}
   {{ $cssOpts := (dict "targetPath" "css/coder.css" "enableSourceMap" true ) }}
   {{ $styles := resources.Get "scss/coder.scss" | resources.ExecuteAsTemplate "style.coder.css" . | toCSS $cssOpts }}
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">

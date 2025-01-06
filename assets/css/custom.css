@@ -1,0 +1,91 @@
+/* HOME */
+  .info-sections {
+    display: flex;
+    gap: 10em;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 20px;
+  }
+
+  .info-section {
+    text-align: center;
+  }
+  .info-section i {
+    font-size: 2em;
+    margin-bottom: 5px;
+  }
+
+    .interests-list {
+    list-style-type: none;
+  }
+  .interests-list li {
+    margin: 5px 0;
+  }
+
+  .projects-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .project-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .project-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  .project-card h4 {
+    margin-top: 10px;
+  }
+
+    .see-all-button {
+      margin-top: 2em;
+  }
+
+/* Projects index */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  flex: 1 1 calc(33.333% - 20px); /* Place max 3 cards */
+  max-width: 300px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card img {
+  width: 100%;
+  height: auto;
+}
+.card h2 {
+  margin: 0;
+  padding: 10px;
+}
+.card p {
+  padding: 0 10px 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .card {
+    flex: 1 1 calc(50% - 20px); /* Two cards per row on medium screens */
+  }
+}
+@media (max-width: 600px) {
+  .card {
+    flex: 1 1 calc(100% - 20px); /* One card per row on small screens */
+  }
+}
+

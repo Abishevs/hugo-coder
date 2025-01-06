@@ -1,0 +1,37 @@
+<div class="card">
+  {{ if .Params.linkToSource }}
+    <a href="{{ .Params.SourceCodeUrl }}" target="_blank" rel="noopener noreferrer">
+    {{ else }}
+    <a href="{{ .Permalink }}">
+      {{ end }}
+
+      {{ if .Params.thumbnail }}
+      <img src="{{ .Params.thumbnail }}" alt="{{ .Title }}">
+      {{ end }}
+      <h2>{{ .Title }}</h2>
+    </a>
+      <p>{{ .Params.description }}</p>
+      <div class="keywords">
+        {{ range .Params.keywords }}
+        <span class="keyword">{{ . }}</span>
+        {{ end }}
+      </div>
+</div>
+
+<style>
+.keywords {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 10px;
+  margin-bottom: 2em;
+  gap: 10px;
+}
+.keyword {
+  background-color: none;
+  border: 2px solid #2e2d2d;
+  border-radius: 4px;
+  padding: 0 1rem;
+  font-size: 1rem;
+}
+
+</style>
