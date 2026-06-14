@@ -1,0 +1,38 @@
+{{ define "title" }}
+{{ .Title }} · {{ .Site.Title }}
+{{ end }}
+
+{{ define "content" }}
+
+<div class="container">
+
+  <main class="journal-content">
+
+{{ with .Params.project }}
+  {{ $p := $.Site.GetPage . }}
+
+  {{ with $p }}
+Project journal for the
+    <a href="{{ .RelPermalink }}">
+       {{ .Title }}
+    </a>
+  {{ end }}
+{{ end }}
+
+    {{ if .Params.toc }}
+    <div>
+      <h1>Table Of Contents</h1>
+    <aside class="journal-toc">
+      {{ .TableOfContents }}
+    </aside>
+    </div>
+    {{ end }}
+
+    <section class="journal-body">
+      {{ .Content }}
+    </section>
+
+  </main>
+</div>
+
+{{ end }}

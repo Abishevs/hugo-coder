@@ -1,0 +1,89 @@
+{{ define "title" }}
+{{ .Title }} · {{ .Site.Title }}
+{{ end }}
+
+{{ define "content" }}
+
+<section class="container page">
+  <article class="project-page">
+
+<header class="project-header">
+
+  <h1 class="title">
+    {{ .Title }}
+  </h1>
+
+  {{ with .Params.description }}
+    <p class="project-description">
+      {{ . }}
+    </p>
+  {{ end }}
+
+  <div class="project-meta">
+
+    {{ with .Params.projectType }}
+      <span class="tag">
+        {{ . }}
+      </span>
+    {{ end }}
+
+    {{ with .Params.status }}
+      <span class="tag status">
+        {{ . }}
+      </span>
+    {{ end }}
+
+  </div>
+
+  <div class="project-links">
+
+    {{ with .Params.demoUrl }}
+      <a class="project-button" href="{{ . }}">
+        Demo
+      </a>
+    {{ end }}
+
+    {{ with .Params.sourceCodeUrl }}
+      <a class="project-button" href="{{ . }}">
+        Source
+      </a>
+    {{ end }}
+
+    {{ with .Params.reportUrl }}
+      <a class="project-button" href="{{ . }}">
+        Report
+      </a>
+    {{ end }}
+
+  </div>
+
+  {{ with .Params.heroImage }}
+    <img class="hero-image" src="{{ . }}">
+  {{ end }}
+
+</header>
+
+{{ $projectName := .File.BaseFileName }}
+{{ $journal := site.GetPage (printf "/project-journal/%s" $projectName) }}
+
+{{ if $journal }}
+<section class="related-journal">
+  <h2>Project Journal</h2>
+
+  <a class="project-button" href="{{ $journal.RelPermalink }}">
+    Open Journal
+  </a>
+</section>
+{{ end }}
+
+<section class="project-content">
+  {{ .Content }}
+</section>
+
+  </article>
+</section>
+
+{{ partial "posts/math.html" . }}
+
+{{ end }}
+
